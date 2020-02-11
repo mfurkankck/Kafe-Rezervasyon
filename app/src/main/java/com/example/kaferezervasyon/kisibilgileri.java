@@ -21,6 +21,7 @@ public class kisibilgileri extends AppCompatActivity {
 
     Button gönder;
     private Rezervasyon rezervasyon;
+    private Yemek yemek;
 
 
     @Override
@@ -39,12 +40,15 @@ public class kisibilgileri extends AppCompatActivity {
 
 
 
+        this.yemek = new Yemek();
         this.rezervasyon = new Rezervasyon();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(kisibilgileri.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = sharedPreferences.getString("rezervasyon", "");
         Rezervasyon rezervasyon1 = gson.fromJson(json, Rezervasyon.class);
+        Yemek yemek=gson.fromJson(json,Yemek.class);
+        menu.setText(yemek.getmIsim());
         tarih.setText(rezervasyon1.getTarih());
         mail.setText(rezervasyon1.getMail());
         telefon.setText(rezervasyon1.getTelefon());

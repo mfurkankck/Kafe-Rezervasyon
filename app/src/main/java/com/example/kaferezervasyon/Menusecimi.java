@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.example.kaferezervasyon.helper.YemekListHelper;
 import com.example.kaferezervasyon.model.Rezervasyon;
+import com.example.kaferezervasyon.model.Yemek;
 import com.google.gson.Gson;
 
 public class Menusecimi extends AppCompatActivity {
@@ -25,13 +26,14 @@ public class Menusecimi extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
     private Rezervasyon mRezervasyon;
+    private YemekListHelper yemekListHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menusecimi);
-        YemekListHelper yemekListHelper = new YemekListHelper();
+        final YemekListHelper yemekListHelper = new YemekListHelper();
 
         button = (Button) findViewById(R.id.button1);
 
@@ -62,7 +64,7 @@ public class Menusecimi extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 Gson gson = new Gson();
-                String json = gson.toJson(mRezervasyon);
+                String json = gson.toJson(yemekListHelper);
                 editor.putString("rezervasyon", json);
                 editor.apply();
 
